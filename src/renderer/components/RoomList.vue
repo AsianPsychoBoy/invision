@@ -1,17 +1,12 @@
 <template>
-	<div class="room-list">
-		<div class="flexbox-img-box" id="room">
-    	</div>
-	</div>
+  <div class="flexbox-img-box" id="room">哈哈哈</div>
 </template>
 
 <script>
 export default {
-	
+
 }
 </script>
-
-<style>
 		.create-room{
 			width:100%
 		}
@@ -126,4 +121,6 @@ export default {
 			border-radius:6px;
 			 cursor:pointer
 		}
+<style>
+
 </style>
