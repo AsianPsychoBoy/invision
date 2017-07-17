@@ -1076,8 +1076,7 @@ function createWindow() {
     mainWindow = new __WEBPACK_IMPORTED_MODULE_0_electron__["BrowserWindow"]({
         height: 563,
         useContentSize: true,
-        width: 1000,
-        frame: false
+        width: 1000
     });
 
     mainWindow.loadURL(winURL);
@@ -1085,8 +1084,6 @@ function createWindow() {
     mainWindow.on('closed', function () {
         mainWindow = null;
     });
-
-    __WEBPACK_IMPORTED_MODULE_0_electron__["Menu"].getApplicationMenu(null);
 }
 
 __WEBPACK_IMPORTED_MODULE_0_electron__["app"].on('ready', createWindow);

@@ -1,12 +1,6 @@
 <template>
 	<div id="app">
-		<div class="app-menu">
-			<div class="window-button-group">
-				<button class="minimize">-</button>
-				<button class="maximize">+</button>
-				<button class="close">X</button>
-			</div>
-		</div>
+	<app-menu></app-menu>
 		<nav class="app-nav">
 			<router-link to="/room-list">房间列表</router-link>
 			<router-link to="/create-room">创建直播</router-link>
@@ -17,8 +11,13 @@
 </template>
 
 <script>
+	import AppMenu from './components/AppMenu'
+
 	export default {
-		name: 'invision'
+		name: 'invision',
+		components: {
+			'app-menu': AppMenu
+		}
 	}
 </script>
 
