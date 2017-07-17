@@ -1,5 +1,5 @@
 <template>
-	<h1>Room List</h1>
+	<h1>房间列表</h1>
 </template>
 
 <script>

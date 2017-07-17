@@ -5,9 +5,9 @@ Vue.use(Router)
 
 export default new Router({
     routes: [{
-            path: '/create-event',
+            path: '/create-room',
             name: '创建活动',
-            component: require('@/components/CreateEvent')
+            component: require('@/components/CreateRoom')
         },
         {
             path: '/',
@@ -17,7 +17,7 @@ export default new Router({
         {
             path: '/profile',
             name: '我的资料',
-            component: require('@/components/RoomList')
+            component: require('@/components/Profile')
         },
         {
             path: '*',

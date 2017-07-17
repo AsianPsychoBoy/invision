@@ -1,5 +1,5 @@
 <template>
-	<h1>Create Event</h1>
+	<h1>创建房间</h1>
 </template>
 
 <script>
