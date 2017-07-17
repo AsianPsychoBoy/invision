@@ -1076,7 +1076,9 @@ function createWindow() {
     mainWindow = new __WEBPACK_IMPORTED_MODULE_0_electron__["BrowserWindow"]({
         height: 563,
         useContentSize: true,
-        width: 1000
+        width: 1000,
+        frame: false,
+        resizable: false
     });
 
     mainWindow.loadURL(winURL);
