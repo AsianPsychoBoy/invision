@@ -5,19 +5,20 @@ Vue.use(Router)
 
 export default new Router({
     routes: [{
-            path: '/create-room',
-            name: '创建活动',
-            component: require('@/components/CreateRoom')
-        },
-        {
             path: '/',
-            name: '直播列表',
-            component: require('@/components/RoomList')
+            redirect: '/login'
         },
         {
-            path: '/profile',
-            name: '我的资料',
-            component: require('@/components/Profile')
+            path: '/room/:roomId',
+            name: '直播间',
+            component: require('@/components/Room'),
+            props: true
+        },
+        {
+            path: '/login',
+            name: '登陆',
+            component: require('@/components/Login'),
+            props: true
         },
         {
             path: '*',
