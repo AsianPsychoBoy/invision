@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import axios from 'axios'
+import SocketIO from 'socket.io-client'
+import VueSocketIO from 'vue-socket.io'
 
 import App from './App'
 import router from './router'
@@ -8,6 +10,8 @@ import store from './store'
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
+export const SocketInstance = SocketIO('http://123.206.124.171')
+Vue.use(VueSocketIO, SocketInstance, store)
 
 /* eslint-disable no-new */
 new Vue({

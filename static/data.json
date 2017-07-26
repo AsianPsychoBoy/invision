@@ -1,11 +1,1 @@
-{
-    "errorNo": 0,
-    "rommId": "3cddeeweqweq",
-    "img": "https:\/\/www.iissr.com\/",
-    "text": "内容",
-    "teacher": "charles miao",
-    "status": 0,
-    "startTime": "2017-7-18 13:30",
-    "endTime": "2017-7-18 15:30",
-    "ppt": "https:\/\/www.iissr.com"
-}
+{ "status": 0, "data": [{ "_id": "597566eb4740ee056428ca59", "id": "22e13a0a-cf74-4486-8ef4-4d1b5f0ed542", "lineID": "22e13a0a-cf74-4486-8ef4-4d1b5f0ed542", "room": "roomId2", "status": 0, "startTime": "15000000", "endTime": "15000000", "_teacher": 0, "teacherUser": "teacherAdmin", "teacherPassword": "111111", "assistantUser": "assistantAdmin", "assistantPassword": "111111", "_ppt": 0, "peopleNum": 0, "messageNum": 0, "__v": 0 }] }

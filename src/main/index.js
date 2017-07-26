@@ -33,7 +33,7 @@ function createWindow () {
         mainWindow = null
     })
 
-    // Menu.getApplicationMenu(null)
+    // Menu.setApplicationMenu(null)
 }
 
 app.on('ready', createWindow)

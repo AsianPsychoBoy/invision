@@ -1,6 +1,6 @@
 <template>
 	<div class="app-menu">
-		<div class="app-logo"><h2> Invision </h2></div>
+		<div class="app-logo"><router-link to="/login"><h2>Invision</h2></router-link></div>
 		<div class="window-button-group">
 			<button class="minimize" v-on:click="minWin"><i class="iconfont icon-heng"></i></button>
 			<button v-if="isMax" class="unmaximize" v-on:click="unmaxWin"><i class="iconfont icon-zlzuidahua"></i></button>

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 
 Vue.use(Router)
 
@@ -12,7 +13,10 @@ export default new Router({
             path: '/room/:roomId',
             name: '直播间',
             component: require('@/components/Room'),
-            props: true
+            props: true,
+            beforeEnter: (to, from, next) => {
+                store.state.Auth.loggedIn ? next() : next(false)
+            }
         },
         {
             path: '/login',
