@@ -14,9 +14,13 @@ const mutations = {
         state.role = payload.role
     },
     LOG_OUT (state) {
-        state.loggedIn = false
-        state.roomId = ''
-        state.username = ''
+        Object.assign(state, state = {
+            roomId: '',
+            username: '',
+            loggedIn: false,
+            role: 0,
+            userImg: ''
+        })
     }
 }
 

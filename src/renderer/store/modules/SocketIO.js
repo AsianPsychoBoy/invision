@@ -14,7 +14,7 @@ const mutations = {
         console.log('socketIO链接成功')
     },
     SOCKET_DISCONNECT (state) {
-        state = {
+        Object.assign(state, {
             isConnected: false,
             roomJoined: false,
             sysMsg: [],
@@ -22,7 +22,7 @@ const mutations = {
             teacherMsg: [],
             users: [],
             totalUsers: 0
-        }
+        })
         console.log('socketIO链接断开')
     },
     SOCKET_SYS (state, payload) {

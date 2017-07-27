@@ -21,6 +21,7 @@
 export default {
 	name: 'Login',
 	data: function () {
+		console.log(this.$store.state.SocketIO)
 		return {
 			username: '',
 			password: '',
