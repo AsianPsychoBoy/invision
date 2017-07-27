@@ -27,7 +27,8 @@
 					<button type="submit" class="teacher-text-submit" >发送</button>
 				</div>
 			</form>
-
+			{{ isQNUploading }}
+			{{ err }}
 		</div>
 	</div>
 </template>
@@ -35,6 +36,7 @@
 <script>
 require('../audioRecorder/WebAudioRecorder.js')
 const WebAudioRecorder = window.WebAudioRecorder
+const {desktopCapturer} = require('electron')
 
 export default {
 	data: function () {
@@ -44,22 +46,32 @@ export default {
 			isRecording: false,
 			isQNUploading: false,
 			isSaving: false,
-			userMsg: ''
+			userMsg: '',
+			err: 'test'
 		}
 	},
 	created: function () {
 		this.roomInfo = require('../../../static/data.json')
 		// 192.168.30.23:3000/room
-		let audioCtx = new AudioContext()
-		navigator.getUserMedia({ audio: true }, (stream) => {
-			let srcNode = audioCtx.createMediaStreamSource(stream)
-			this.recorder = new WebAudioRecorder(srcNode, { encoding: 'mp3' })
-			this.recorder.onComplete = (recorder, blob) => {
-				console.log('录音成功: ', blob)
-				this.qiniuUpload(blob)
+		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia
+		desktopCapturer.getSources({types: ['window', 'screen']}, (error, sources) => {
+			if (error) throw error
+			for (let i = 0; i < sources.length; ++i) {
+				if (sources[i].name === 'invision') {
+					let audioCtx = new AudioContext()
+					navigator.getUserMedia({ audio: true }, (stream) => {
+						let srcNode = audioCtx.createMediaStreamSource(stream)
+						this.recorder = new WebAudioRecorder(srcNode, { encoding: 'mp3' })
+						this.recorder.onComplete = (recorder, blob) => {
+							console.log('录音成功: ', blob)
+							this.qiniuUpload(blob)
+						}
+					}, function (err) {
+						console.log(err)
+						this.err = err
+					})
+				}
 			}
-		}, function (err) {
-			console.log(err)
 		})
 	},
 	methods: {
@@ -72,28 +84,32 @@ export default {
 			}
 		},
 		async qiniuUpload (blob) {
-			this.isQNUploading = true
+			try {
+				this.isQNUploading = true
 
-			let tokenRes = await this.$http.get('https://iissr.com/token')
+				let tokenRes = await this.$http.get('https://iissr.com/token')
 
-			console.log('七牛token值获取成功', tokenRes)
-			let formData = new FormData()
-			formData.append('key', tokenRes.data.keyId)
-			formData.append('token', tokenRes.data.tokenId)
-			formData.append('file', blob)
+				console.log('七牛token值获取成功', tokenRes)
+				let formData = new FormData()
+				formData.append('key', tokenRes.data.keyId)
+				formData.append('token', tokenRes.data.tokenId)
+				formData.append('file', blob)
 
-			await this.$http.post('https://upload-z2.qbox.me', formData)
+				await this.$http.post('https://upload-z2.qbox.me', formData)
 
-			console.log('上传成功')
-			this.isQNUploading = false
-			// let mp3Url = tokenRes.data.qnUrl + tokenRes.data.keyId
-			this.$socket.send({
-				type: 0,
-				key: tokenRes.data.keyId,
-				userImg: this.$store.state.Auth.userImg,
-				username: this.$store.state.Auth.username,
-				roomId: this.$store.state.Auth.roomId
-			})
+				console.log('上传成功')
+				this.isQNUploading = false
+				// let mp3Url = tokenRes.data.qnUrl + tokenRes.data.keyId
+				this.$socket.send({
+					type: 0,
+					key: tokenRes.data.keyId,
+					userImg: this.$store.state.Auth.userImg,
+					username: this.$store.state.Auth.username,
+					roomId: this.$store.state.Auth.roomId
+				})
+			} catch (e) {
+				this.err = e
+			}
 		},
 		sendMsg () {
 			this.$socket.send({

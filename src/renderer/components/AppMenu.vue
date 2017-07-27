@@ -80,6 +80,7 @@ export default {
 			this.$socket.disconnect()
 			this.$router.push('/login')
 			this.$socket.connect('http://123.206.124.171')
+			this.reloadWin()
 		}
 	}
 }
