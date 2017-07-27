@@ -6,12 +6,12 @@
 					<div class="logo"><img src="../assets/logo.jpg"></div>
 					<div class="logo-text">医云微课堂</div>
 				</div>
-				<div class="input-box">
+				<div class="login-input-box">
 					<div class="id"><input type="text" id="roomId" v-model="roomId" placeholder="请输入ID"></div>
 					<div class="user"><input type="text" id="username" v-model="username" placeholder="请输入用户"></div>
 					<div class="password"><input id="password" v-model="password" type="password" placeholder="请输入密码"></div>
 				</div>
-				<button class="submit" id="submit" type="submit">登录</button>
+				<button class="login-submit" id="submit" type="submit">登录</button>
 			</div>
 		</form>
 	</div>
@@ -110,7 +110,7 @@ export default {
 		border-radius: 8px;
 		margin-top:30px;
 	}
-	.input-box input{
+	.login-input-box input{
 		border: none;
 		width: 100%;
 		height: 100%;
@@ -120,7 +120,7 @@ export default {
 		font-size: 20px;
 		font-family: "微软雅黑";
 	}
-	.submit{
+	.login-submit{
 		width: 180px;
 		height:50px;
 		line-height: 50px;

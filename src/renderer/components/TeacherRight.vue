@@ -91,7 +91,8 @@ export default {
 				type: 0,
 				key: tokenRes.data.keyId,
 				userImg: this.$store.state.Auth.userImg,
-				username: this.$store.state.Auth.username
+				username: this.$store.state.Auth.username,
+				roomId: this.$store.state.Auth.roomId
 			})
 		},
 		sendMsg () {
@@ -99,7 +100,8 @@ export default {
 				type: 1,
 				msg: this.userMsg,
 				userImg: this.$store.state.Auth.userImg,
-				username: this.$store.state.Auth.username
+				username: this.$store.state.Auth.username,
+				roomId: this.$store.state.Auth.roomId
 			})
 			this.userMsg = ''
 		},

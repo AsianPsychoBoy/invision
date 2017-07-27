@@ -8,10 +8,10 @@
 			<div class="teacher-tx">
 				<div class="teacher-top clearfix">
 					<div class="teacher-tx-box">
-						<img src="../assets/img/tx.jpg">
+						<img :src="userImg">
 					</div>
 					<div class="teacher-xx">
-						<div class="teacher-name">charles</div>
+						<div class="teacher-name">{{ username }}</div>
 						<div class="teacher-online clearfix">
 							<div class="teacher-bor"></div>
 							<div class="teacher-online">Online</div>
@@ -19,25 +19,31 @@
 					</div>
 				</div>
 			</div>
-			<div class="teacher-loginout">
+			<div class="teacher-loginout" @click="logout">
 				<div class="teacher-pos">
 					<div class="teacher-tc">
 						<img src="../assets/img/loginout.jpg">
 					</div>
 					<div class="teacher-out-text">退出</div>
 				</div>
-				<div class="window-button-group">
-					<button class="minimize" v-on:click="minWin"><i class="iconfont icon-heng"></i></button>
-					<button v-if="isMax" class="unmaximize" v-on:click="unmaxWin"><i class="iconfont icon-zlzuidahua"></i></button>
-					<button v-else class="maximize" v-on:click="maxWin"><i class="iconfont icon-zlzuidahua"></i></button>
-					<button class="close" v-on:click="closeWin"><i class="iconfont icon-x"></i></button>
-				</div>
 			</div>
+		</div>
+		<div class="window-button-group">
+			<button class="minimize" v-on:click="minWin"><i class="iconfont icon-heng"></i></button>
+			<button v-if="isMax" class="unmaximize" v-on:click="unmaxWin"><i class="iconfont icon-zlzuidahua"></i></button>
+			<button v-else class="maximize" v-on:click="maxWin"><i class="iconfont icon-zlzuidahua"></i></button>
+			<button class="close" v-on:click="closeWin"><i class="iconfont icon-x"></i></button>
+		</div>
+		<div class="user-info">
+			<h3>在线人数{{users.length}}</h3>
+			<h3>总人次{{totalUsers}}</h3>
 		</div>
 	</div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
 	data: function () {
 		let { BrowserWindow } = this.$electron.remote
@@ -46,6 +52,10 @@ export default {
 			window: window,
 			isMax: window.isMaximized()
 		}
+	},
+	computed: {
+		...mapState('Auth', ['roomId', 'username', 'role', 'userImg']),
+		...mapState('SocketIO', ['users', 'totalUsers'])
 	},
 	methods: {
 		closeWin: function () {
@@ -64,6 +74,12 @@ export default {
 		},
 		reloadWin: function () {
 			this.window.reload()
+		},
+		logout () {
+			this.$store.commit('Auth/LOG_OUT')
+			this.$socket.disconnect()
+			this.$router.push('/login')
+			this.$socket.connect('http://123.206.124.171')
 		}
 	}
 }

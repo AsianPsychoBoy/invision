@@ -4,7 +4,8 @@ const state = {
     sysMsg: [],
     userMsg: [],
     teacherMsg: [],
-    users: []
+    users: [],
+    totalUsers: 0
 }
 
 const mutations = {
@@ -13,12 +14,22 @@ const mutations = {
         console.log('socketIO链接成功')
     },
     SOCKET_DISCONNECT (state) {
-        state.isConnected = false
+        state = {
+            isConnected: false,
+            roomJoined: false,
+            sysMsg: [],
+            userMsg: [],
+            teacherMsg: [],
+            users: [],
+            totalUsers: 0
+        }
+        console.log('socketIO链接断开')
     },
     SOCKET_SYS (state, payload) {
         state.roomJoined = true
         state.sysMsg.push(payload[0])
         state.users = payload[1]
+        state.totalUsers = payload[2]
         console.log('房间进入成功')
     },
     SOCKET_MSG (state, payload) {
