@@ -3,6 +3,7 @@ const state = {
     roomJoined: false,
     sysMsg: [],
     userMsg: [],
+    teacherMsg: [],
     users: []
 }
 
@@ -22,7 +23,15 @@ const mutations = {
     },
     SOCKET_MSG (state, payload) {
         console.log(payload)
-        state.userMsg.push({ user: payload[0], msg: payload[1] })
+        let type = payload[1].type
+        if (type === 0 || type === 1) {
+            state.teacherMsg.push(payload[1])
+        } else {
+            state.userMsg.push(payload[1])
+            if (state.userMsg.length > 3) {
+                state.userMsg.shift()
+            }
+        }
     }
 }
 

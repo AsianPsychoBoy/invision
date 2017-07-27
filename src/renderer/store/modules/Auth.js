@@ -2,7 +2,8 @@ const state = {
     roomId: '',
     username: '',
     loggedIn: false,
-    role: ''
+    role: 0,
+    userImg: ''
 }
 
 const mutations = {
@@ -10,6 +11,7 @@ const mutations = {
         state.loggedIn = true
         state.roomId = payload.roomId
         state.username = payload.username
+        state.role = payload.role
     },
     LOG_OUT (state) {
         state.loggedIn = false

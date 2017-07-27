@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="./fonts/iconfont.css">
+    <link rel="stylesheet" href="./style/swiper.min.css">
+    <style>
+        body,div,h1,h2,h3,h4,h5,h6,hr,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,a,i,em,b,fieldset,form,label,legend{margin:0;padding:0;}
+        body,input,button,textarea,select{font-family: "微软雅黑";}
+        input,button,textarea,select{font-family: "Microsoft YaHei" Helvetica Neue,Helvetica,Arial,sans-serif;font-size:16px;outline:none;border:none;-webkit-appearance: none;}
+        ol,ul{list-style:none;}
+        ::-webkit-input-placeholder{color: #999;}/*改变input里面placeholder文本颜色*/
+        a{text-decoration:none;color:#333;}
+        img{border:0;vertical-align:middle;}
+        h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+        i,em{font-style: normal;}
+        b,strong{font-weight: normal;}
+        textarea{resize: none;}/*取消自动调节大小*/
+        * {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-touch-callout:none}
+        *:before,*:after{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+        /*box-sizing: border-box;对象的实际宽度就等于设置的width值，即使定义有border和padding也不会改变对象的实际宽度。*/
+        /*清浮动*/
+        .clearfix:after{visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+
+        .header{
+            width: 100%;
+            height:80px;
+            border-bottom:solid 1px #bfbfbf;
+        }
+        .all{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 100%;
+            height: 100%;
+            border:solid 1px red;
+            display: flex;
+            flex-flow: column;
+            align-items: stretch;
+            justify-content:space-between;
+        }
+        .teacher-title{
+            height:80px;
+            line-height: 80px;
+            padding-left: 20px;
+            float: left;
+        }
+        .teacher-logo{
+            float: left;
+        }
+        .teacher-logo-text{
+            float:left;
+            font-size:28px;
+            color:#4d4d4d;
+            font-family: "微软雅黑";
+            margin-left: 12px;
+        }
+        .teacher-right-box{
+            float: right;
+
+            height: 100%;
+        }
+        .teacher-tx{
+            float: right;
+            width: 190px;
+            height:80px;
+            border-left: solid 1px #9f9f9f;
+        }
+        .teacher-loginout{
+            float: right;
+        }
+        .teacher-tx-box{
+            float: left;
+            width: 60px;
+            height:60px;
+            border-radius: 50%;
+            overflow:hidden;
+     }
+        .teacher-tx-box img{
+            width: 100%;
+            height: 100%;
+        }
+        .teacher-xx{
+            float: left;
+            margin-top: 6px;
+            margin-left: 6px;
+            font-size: 18px;
+            color:#676767;
+            font-family: "微软雅黑";
+        }
+        .teacher-bor{
+            width: 8px;
+            height:8px;
+            border-radius: 50%;
+            background-color: #00d1a0;
+            float: left;
+            margin-top: 9px;
+        }
+        .teacher-online{
+            float: left;
+            margin-left: 4px;
+        }
+        .teacher-top{
+            height:60px;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+        .teacher-loginout{
+            position: relative;
+            border-left: solid 1px #9f9f9f;
+            height: 80px;
+            width: 120px;
+        }
+        .teacher-tc{
+            float: left;
+        }
+        .teacher-out-text{
+            float: left;
+            margin-left: 10px;
+        }
+        .teacher-pos{
+            position: absolute;
+            left:50%;
+            top:50%;
+            height: 30px;
+            width: 80px;
+            line-height: 30px;
+            margin-left: -40px;
+            margin-top: -15px;
+        }
+        audio{
+            opacity: 0;
+            display: none;
+        }
+        #msglog, #messageInput {
+            border: 1px solid #ccc;
+            width: 500px;
+            height: 350px;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+        #messageInput {
+            height: 80px;
+        }
+        .message {
+            line-height: 22px;
+        }
+        .message .user {
+            padding-right: 5px;
+            padding-left: 5px;
+            color: brown;
+        }
+        .sysMsg {
+            color: #c1bfbf;
+            padding-right: 5px;
+            padding-left: 5px;
+            font-size: 12px;
+        }
+        #users {
+            width: 100%;
+            padding: 0 5px 5px;
+        }
+        .swiper-wrapper img{
+            width:100%;
+        }
+        .swiper-container {
+            width: 100%;
+        }
+        .swiper-slide {
+            width: 100%;
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+        }
+
+        body{
+            background-color: #f2f2f2;
+        }
+        .center{
+            background-color: #f2f2f2;
+        }
+        .subform,.cz{
+            height: 54px;
+            line-height: 54px;
+        }
+        .subform{
+            width: 100%;
+            position:absolute;
+            left:0;
+            bottom:0;
+            font-family: "微软雅黑";
+            font-size: 16px;
+            background-color: #fff;
+            z-index: 9999;
+        }
+        .cz{
+            color:#6a6a6a;
+        }
+        .input-box .in-box,.cz,.input-box,{
+            float: left;
+        }
+        .form-auto{
+            position: relative;
+            padding-left: 8px;
+            padding-right: 8px;
+            width: 100%;
+            height: 100%;
+        }
+        .submit{
+            width: 54px;
+            height: 36px;
+            background-color: #1ac553;
+            color: #fff;
+            line-height: 36px;
+            border-radius: 4px;
+            letter-spacing: 2px;
+            position: absolute;
+            right:8px;
+            top:50%;
+            margin-top: -18px;
+        }
+        .input-box{
+            position: absolute;
+            left:0;
+            top:50%;
+            width: 100%;
+            height: 100%;
+            padding-left: 45px;
+            padding-right: 70px;
+            height: 36px;
+            margin-top:-18px;
+        }
+        .text{
+            position: relative;
+            width: 100%;
+            background-color: #ededed;
+            border-radius: 4px;
+            line-height: 36px;
+        }
+        .text input{
+            background-color: #ededed;
+        }
+        .yuan{
+            position: relative;
+            width: 18px;
+            height:18px;
+            border-radius: 50%;
+            float: left;
+            position: absolute;
+            left: 0;
+            top:50%;
+            margin-top: -9px;
+        }
+        .tw-text{
+            float: right;
+            padding-left: 4px;
+            padding-right: 4px;
+            color: #545454;
+        }
+        .tw{
+            position: relative;
+            width: 60px;
+            position: absolute;
+            right: 0;
+            top:0;
+            font-family: "微软雅黑";
+            font-size: 16px;
+        }
+        .in-box{
+            width: 100%;
+            padding-right: 64px;
+            position: relative;
+        }
+        .in-box input{
+            width: 100%;
+            height: 100%;
+            padding-left:6px;
+            padding-right: 6px;
+            height: 36px;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        .x-yuan{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color:#2dc560;
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin-left:-5px;
+            margin-top:-5px;
+            display: none;
+        }
+        .yuan-bor{
+            border:solid 1px #b5b5b5;
+        }
+        .blue-bor{
+            border:solid 1px #38c34c;
+        }
+        .all{
+            position: relative;
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow:hidden;
+        }
+        .pos{
+            position:static;
+            left:0;
+            bottom:0;
+        }
+        .all{
+
+        }
+        #messages{
+            position: absolute;
+            right: 8px;
+            bottom:60px;
+            width: 140px;
+        }
+        #messages li{
+            position: relative;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        .tx-box{
+            position: relative;
+            width: 36px;
+            height:36px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .tx-box img{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 100%;
+            height:100%;
+        }
+        .litext{
+            width: 100%;
+            padding-right: 40px;
+        }
+        .tx-box{
+            float: right;
+            margin-top:6px;
+        }
+        .litext span{
+            padding-top: 8px;
+            padding-left: 8px;
+            color: #fff;
+            background:rgba(0,0,0, 0.5)!important;
+            filter:Alpha(opacity=50);
+            background:#000;
+            border-radius: 4px;
+            padding-bottom: 8px;
+            padding-right: 8px;
+            float: right;
+            font-size: 16px;
+            font-family: "微软雅黑";
+        }
+        .center{
+            width: 100%;
+            height:100%;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .center-auto{
+            width: 100%;
+            padding-right: 8px;
+            padding-left:8px;
+        }
+        .time-box{
+            width: 100%;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color:#bfbfbf;
+            font-family: "微软雅黑";
+            font-size:16px;
+        }
+        .yp-box{
+            position: relative;
+            width: 100%;
+        }
+        .left-box{
+            width: 70px;
+        }
+        .right-box{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 100%;
+            height:100%;
+            padding-left:78px;
+        }
+        .big-tx{
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .big-tx img{
+            height: 100%;
+            width: 100%;
+        }
+        .s-yuan{
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: #f1cb84;
+            font-family: "微软雅黑";
+            font-size: 16px;
+            text-align: center;
+            line-height: 26px;
+            color:#b28840;
+            margin: auto;
+            margin-top:8px;
+        }
+        .right-box{
+
+        }
+        .name{
+            height: 30px;
+            font-family:"微软雅黑";
+            font-size: 16px;
+            line-height: 30px;
+        }
+        .wlds{
+            float: left;
+            color:#444;
+        }
+        .zjr{
+            float: left;
+            color:#9e9e9e;
+            margin-left:10px;
+        }
+
+
+        .videoPlayer{
+            width: 100%;
+        }
+        .video{
+            margin-top: 0px;
+        }
+        .videoControls{
+            position: relative;
+            position: absolute;
+            left:0;
+            top:50%;
+            width: 100%;
+            height: 36px;
+            margin-top: -18px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .show{
+            opacity: 1;
+        }
+        .hide{
+            opacity: 0;
+        }
+        .progressWrap{
+            background-color: #9fd549;
+            height: 6px;
+            cursor: pointer;
+        }
+        .playProgress{
+            background-color: #9fd549;
+            width: 0px;
+            height: 6px;
+            border-right: 2px solid blue;
+        }
+        .showProgress{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 25px;
+        }
+        .play i{
+            font-size:30px;
+        }
+        .bg-video{
+            background-color: #b0e65a;
+            width: 200px;
+            height: 60px;
+            position: relative;
+            border-radius: 4px;
+        }
+        .progressWrap{
+            width: 100%;
+
+        }
+        .right-video{
+            float: left;
+            position: absolute;
+            left:10px;
+            top:0;
+            z-index: 9999;
+        }
+        .time{
+            float: right;
+            line-height: 36px;
+            color:#4b663d;
+            font-size: 16px;
+            font-family: "微软雅黑"
+        }
+        .playProgress{
+            float: left;
+        }
+        .heng-box{
+            width: 100%;
+            padding-left: 48px;
+            padding-right: 37px;
+            height:6px;
+            position: absolute;
+            left:0;
+            top:50%;
+            margin-top:-3px;
+        }
+        .playBtn i{
+            color: #fff;
+        }
+        .teacher-left{
+            position: relative;
+            position: absolute;
+            left:0;
+            top:0;
+            width: 28%;
+            height:100%;
+            border:solid 1px red;
+        }
+        .teacher-main{
+            position: absolute;
+            left:28%;
+            top:0;
+            width:48%;
+            border:solid 1px red;
+            height: 100%;
+            overflow: auto;
+            padding-bottom: 80px;
+        }
+        .teacher-right{
+            position: absolute;
+            left:76%;
+            top:0;
+            width:24%;
+            border:solid 1px red;
+            height: 100%;
+            background-color: #4d4d4d;
+        }
+        .teacher-content{
+            position: relative;
+            -webkit-flex:1;
+        }
+        .teacher-tm{
+            width: 100%;
+            height:50px;
+            line-height: 50px;
+            text-align: center;
+            color:#221715;
+            font-size: 18px;
+        }
+        .flexbox-img-box{
+            width: 100%;
+            border-left:solid 1px #979799;
+            border-right:solid 1px #979799;
+        }
+        .flexbox-img-auto{
+            width: 96%;
+            margin: auto;
+        }
+        .flexbox-img-one{
+            position: relative;
+            color:#666;
+            width: 95px;
+            height:68px;
+            margin-top: 13.5px;
+        }
+        .flexbox-img-one img{
+            width: 100%;
+            height: 100%;
+
+        }
+        .three-img-column{
+            position: relative;
+            width: 100%;
+            height: 95px;
+            display: box;
+            display: -webkit-box;
+            font-size: 16px;
+            font-family: "微软雅黑";
+            border-bottom:solid 1px #B8B8B8;
+        }
+        .flexbox-img-two{
+            -webkit-box-flex:1;
+            position: relative;
+        }
+        .flexbox-img-one{
+            -webkit-box-flex:0 0 200px;
+        }
+        .flexbox-img-padding{
+            position: relative;
+            width: 100%;
+            height: 21px;
+            position: absolute;
+            left: 0;
+            top:0;
+            bottom:0;
+            right:0;
+            margin: auto;
+        }
+        .flexbox-img-title{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            word-break: break-all;
+            overflow: hidden;
+            font-size: 16px;
+            font-family: "微软雅黑";
+            line-height: 22px;
+            position: absolute;
+            left:0;
+            top: 0;
+            width: 40%;
+            padding-right: 12px;
+            padding-left: 12px;
+        }
+        .flexbox-img-text{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            word-break: break-all;
+            overflow: hidden;
+            font-size: 14px;
+            font-family: "微软雅黑";
+            color:#9b9b9b;
+            line-height: 20px;
+            float: left;
+        }
+        .flexbox-img-zt{
+            position: absolute;
+            left:0;
+            bottom:0;
+            width: 100%;
+            float: left;
+            border: solid 1px red;
+        }
+        .flexbox-img-btn{
+            width: 28px;
+            height:12px;
+            background:#E51818;
+            border-radius:3px;
+            color:#fff;
+            font-size:7px;
+            line-height:12px;
+            text-align:center;
+            float: right;
+        }
+        .teacher-sc-wz{
+            float: left;
+            border:solid 1px red;
+        }
+        .teacher-sc-url{
+            position: absolute;
+            left: 40%;
+            top:0;
+            width: 60%;
+            border:solid 1px red;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            word-break: break-all;
+            overflow: hidden;
+            padding-right: 12px;
+            padding-left: 12px;
+        }
+        .teacher-sc-btn{
+            float: left;
+            border:solid 1px red;
+        }
+        .flexbox-img-there{
+            position: relative;
+            color:#666;
+            width: 95px;
+            height:68px;
+            margin-top: 13.5px;
+            border:solid 1px red;
+        }
+        .teacher-img-btn{
+            border:solid 1px #8c8c8c;
+            text-align: center;
+            line-height:24px;
+            height: 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: "微软雅黑";
+            margin-top: 22px;
+        }
+        .teacher-sc-text{
+            float: left;
+            line-height: 50px;
+            margin-left: 8px;
+            font-family: "微软雅黑";
+
+        }
+        .teacher-sck{
+            float: left;
+            margin-left: 8px;
+            margin-top: 11px;
+        }
+        .teacher-sc-box{
+            width: 100%;
+            height: 50px;
+            border:solid 1px #979799;
+        }
+        .teacher-sc{
+            width: 100%;
+            border:solid 1px red;
+        }
+        .teacher-au{
+            width: 96%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="all">
+        <div class="header clearfix">
+            <div class="teacher-title clearfix">
+                <div class="teacher-logo"><img src="./img/logo.jpg"></div>
+                <div class="teacher-logo-text">医云微课堂</div>
+            </div>
+            <div class="teacher-right-box clearfix">
+                <div class="teacher-tx">
+                    <div class="teacher-top clearfix">
+                        <div class="teacher-tx-box">
+                            <img src="./img/tx.jpg">
+                        </div>
+                        <div class="teacher-xx">
+                            <div class="teacher-name">charles</div>
+                            <div class="teacher-online clearfix">
+                                <div class="teacher-bor"></div>
+                                <div class="teacher-online">Online</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="teacher-loginout">
+                    <div class="teacher-pos">
+                        <div class="teacher-tc">
+                            <img src="./img/loginout.jpg">
+                        </div>
+                        <div class="teacher-out-text">退出</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="teacher-content clearfix">
+            <div class="teacher-left">
+                <div class="teacher-tm">下肢静脉曲张Venefit...</div>
+                <div class="bannar">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-number="0"><img src="./img/index.jpg" alt=""></div>
+                            <div class="swiper-slide" data-number="1"><img src="./img/index.jpg" alt=""></div>
+                            <div class="swiper-slide" data-number="2"><img src="./img/index.jpg" alt=""></div>
+                            <div class="swiper-slide" data-number="3"><img src="./img/index.jpg" alt=""></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="center" style="padding-bottom: 80px">
+                    <div class="center-auto">
+                        <ul class="app-box" id="app-box">
+                            <li>
+                                <div class="time-box">05-23 12:53</div>
+                                <div class="yp-box clearfix">
+                                    <div class="left-box">
+                                        <div class="big-tx"><img src="./img/tx.jpg"></div>
+                                        <div class="s-yuan">赏</div>
+                                    </div>
+                                    <div class="right-box">
+                                        <div class="name clearfix"><div class="wlds">刘老师物理辅导</div><div class="zjr">主讲人</div></div>
+                                            <div class="bg-video">
+                                              <div class="videoPlayer videoContainer" id="videoContainer">
+                                                <audio id="video1" class="video1" controls>
+                                                  <source src="" type="audio/mpeg">
+                                                </audio>
+                                                <div id="videoControls" class="clearfix videoControls">
+                                                  <div class="right-video">
+                                                      <div id="playBtn" class="play playBtn" title="Play"> <i class="icon iconfont">&#xe603;</i> </div>
+                                                  </div>
+
+                                                  <div class="heng-box">
+
+                                                  <div id="progressWrap" class="progressWrap">
+                                                    <div id="playProgress" class="playProgress"></div>
+                                                  </div>
+
+                                                  </div>
+
+                                                    <div class="time"></div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <form class="subform" action="">
+                    <div class="form-auto clearfix">
+                        <div class="cz">操作</div>
+                        <div class="input-box">
+                            <div class="text clearfix">
+                                <div class="in-box"><input type="text" id="m" placeholder="加入一起讨论..." /></div>
+                                <div class="tw clearfix" id="tw" data-status="false">
+                                    <div class="yuan yuan-bor">
+                                        <div class="x-yuan"></div>
+                                    </div>
+                                    <div class="tw-text">提问</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="submit" id="submit">发送</button>
+                    </div>
+                </form>
+
+                <ul id="messages">
+                    <li>
+                        <div class="tx-box"><img src="./img/tx.jpg"></div>
+                        <div class="litext"><div class="bghei clearfix"><span>哈哈哈哈哈和黑河喝就家加就</span></div></div>
+                    </li>
+                    <li>
+                        <div class="tx-box"><img src="./img/tx.jpg"></div>
+                        <div class="litext"><div class="bghei clearfix"><span>哈哈哈哈哈和黑河喝就家加就</span></div></div>
+                    </li>
+                    <li>
+                        <div class="tx-box"><img src="./img/tx.jpg"></div>
+                        <div class="litext"><div class="bghei clearfix"><span>哈哈哈哈哈和黑河喝就家加就</span></div></div>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="teacher-main">
+
+                <div class="bannar">
+                    <div class="swiper-container" id="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" data-number="0"><img src="./img/index.jpg" alt=""></div>
+                            <div class="swiper-slide" data-number="1"><img src="./img/index.jpg" alt=""></div>
+                            <div class="swiper-slide" data-number="2"><img src="./img/index.jpg" alt=""></div>
+                            <div class="swiper-slide" data-number="3"><img src="./img/index.jpg" alt=""></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination" id="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="teacher-sc">
+                    <div class="teacher-au">
+                        <div class="teacher-sc-box clearfix">
+                            <div class="teacher-sck">
+                                <div class="teacher-sc-img"><img src="img/sc.jpg"></div>
+                            </div>
+                            <div class="teacher-sc-text">
+                                素材库
+                            </div>
+                        </div>
+                        <div class="flexbox-img-box">
+
+                            <div class="flexbox-img-auto">
+                                <div class="three-img-column">
+                                    <div class="flexbox-img-one">
+                                        <img src="img/img10.png" alt="icon"/>
+                                    </div>
+                                    <div class="flexbox-img-two">
+                                        <div class="flexbox-img-padding">
+                                            <div class="flexbox-img-title clearfix">
+                                               下肢静脉曲张手术全程记录
+                                            </div>
+                                            <div class="teacher-sc-url">http://localhost:63342/inv/teacher.html</div>
+                                        </div>
+                                    </div>
+                                    <div class="flexbox-img-there">
+                                        <div class="teacher-img-btn">复制链接</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flexbox-img-auto">
+                                <div class="three-img-column">
+                                    <div class="flexbox-img-one">
+                                        <img src="img/img10.png" alt="icon"/>
+                                    </div>
+                                    <div class="flexbox-img-two">
+                                        <div class="flexbox-img-padding">
+                                            <div class="flexbox-img-title clearfix">
+                                                下肢静脉曲张手术全程记录
+                                            </div>
+                                            <div class="teacher-sc-url">http://localhost:63342/inv/teacher.html</div>
+                                        </div>
+                                    </div>
+                                    <div class="flexbox-img-there">
+                                        <div class="teacher-img-btn">复制链接</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flexbox-img-auto">
+                                <div class="three-img-column">
+                                    <div class="flexbox-img-one">
+                                        <img src="img/img10.png" alt="icon"/>
+                                    </div>
+                                    <div class="flexbox-img-two">
+                                        <div class="flexbox-img-padding">
+                                            <div class="flexbox-img-title clearfix">
+                                                下肢静脉曲张手术全程记录
+                                            </div>
+                                            <div class="teacher-sc-url">http://localhost:63342/inv/teacher.html</div>
+                                        </div>
+                                    </div>
+                                    <div class="flexbox-img-there">
+                                        <div class="teacher-img-btn">复制链接</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="teacher-right">
+                <div class="teacher-ppt-auto">
+                    <div class="teacher-ppt">PPT</div>
+
+                    <div class="teacher-sck-sc">
+                        <div class="teacher-sck-text">上传素材库</div>
+                        <div class="teacher-input-text">
+                            <div class="teacher-input-box">
+                                <div class="teacher-wb-text">支持 .JPG .PNG .PPT .MOV .MP4</div>
+                                <input class="teacher-file-submit" type="file">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="teacher-yuyin-text">
+                        <div class="teacher-yuyin-text">授课内容</div>
+                        <div class="teacher-select">
+                            <textarea  class="teacher-textarea" name="" id="teacher-textarea" cols="30" rows="10" placeholder="文字输入">
+
+                            </textarea>
+                        </div>
+                        <div class="teacher-text-submit-box clearfix">
+                            <div class="teacher-yuyin-submit">
+                                <img src="img/yuyin.jpg">
+                            </div>
+                            <div class="teacher-text-submit">发送</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <style>
+
+        .teacher-ppt-auto{
+            position: relative;
+            height: 100%;
+            padding-left: 35px;
+            padding-right: 35px;
+            border:solid 1px red;
+        }
+        .teacher-ppt{
+            margin-top: 20px;
+            width: 100%;
+            background-color: #ffe546;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #fff;
+        }
+        .teacher-file-submit{
+
+
+        }
+        .teacher-text-submit{
+            float: right;
+            width: 80px;
+            text-align: center;
+            color:#fff;
+            line-height: 32px;
+            height: 32px;
+            background-color: #00d1a0;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .teacher-yuyin-submit{
+            position: relative;
+            float: right;
+            width: 80px;
+            height: 32px;
+            background-color: #b2b2b2;
+            border-radius: 4px;
+        }
+        .teacher-yuyin-submit img{
+            position: absolute;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            margin: auto;
+        }
+        .teacher-textarea{
+            width: 100%;
+            height: 100%;
+            border:solid 1px red;
+        }
+    </style>
+    <script src="./js/swiper.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            loop:true,//无限循环
+            paginationClickable: true,
+            // spaceBetween: 30, 样式的中间间隔
+            centeredSlides: true,
+            //autoplay: 2000,//自动播放的时间间隔
+            autoplayDisableOnInteraction: false
+        });
+        var swiper2 = new Swiper('#swiper-container', {
+            pagination: '#swiper-pagination',
+            loop:true,//无限循环
+            paginationClickable: true,
+            // spaceBetween: 30, 样式的中间间隔
+            centeredSlides: true,
+            //autoplay: 2000,//自动播放的时间间隔
+            autoplayDisableOnInteraction: false
+        });
+
+
+    </script>
+</body>
+</html>

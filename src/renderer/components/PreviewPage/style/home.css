@@ -1,82 +1,6 @@
-<template>
-	<div class="preview-wrapper">
-		<div class="preview-mask"></div>
-		<div class="preview" v-if="roomJoined">
-			<div class="box">
-				昵称: <span id="userName"></span> <br/>
-				房间: {{roomId}} <br/>
-				当前在线人数: <span id="count">{{users.length}}</span> <br/>
-				在线用户:  <div id="users">{{users}}</div> 
-
-				<button id="joinOrLeave">退出房间</button>
-				
-				
-				<div id="recordingslist"></div>
-			</div>
-			<div class="bannar">
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-						<div class="swiper-slide" data-number="0"><img src="https://www.iissr.com/images/index.jpg" alt=""></div>
-						<!-- <div class="swiper-slide" data-number="1"><img src="https://www.iissr.com/images/index.jpg" alt=""></div>
-						<div class="swiper-slide" data-number="2"><img src="https://www.iissr.com/images/index.jpg" alt=""></div>
-						<div class="swiper-slide" data-number="3"><img src="https://www.iissr.com/images/index.jpg" alt=""></div> -->
-					</div>
-					<!-- Add Pagination -->
-					<div class="swiper-pagination"></div>
-				</div>
-			</div>
-			<div class="center" style="padding-bottom: 80px">
-				<div class="center-auto">
-					<ul class="app-box" id="app-box">
-
-					</ul>
-				</div>
-			</div>
-
-			<ul id="messages">
-			</ul>
-		</div>
-	</div>
-</template>
-
-<script>
-import { mapState } from 'vuex'
-
-export default {
-	computed: {
-		...mapState('SocketIO', ['sysMsg', 'userMsg', 'users', 'roomJoined']),
-		...mapState('Auth', ['roomId', 'username', 'role'])
-	},
-	created: function () {
-		this.$socket.emit('join', this.$store.state.Auth.username, this.$store.state.Auth.roomId)
-	}
-}
-</script>
-
-<style>
-	.preview-wrapper {
-		height: 100%;
-		width: 100%;
-		position: relative;
-	}
-	.preview-mask {
-		position: absolute;
-		height: 100%;
-		width: 100%;
-		z-index: 100;
-	}
-	.preview {
-		height: 100%;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-	}
-</style>
-
-<style scoped>
-	body{
+    body{
         background-color: #f2f2f2;
-    }
+      }
     .center{
       background-color: #f2f2f2;
     }  
@@ -86,16 +10,18 @@ export default {
       }
       .subform{
         width: 100%;
+        position:fixed;
         left:0;
         bottom:0;
         font-family: "微软雅黑";
         font-size: 16px;
         background-color: #fff;
+        z-index: 9999;
       }
       .cz{
         color:#6a6a6a;
       }
-      .input-box .in-box,.cz,.input-box,{
+      .input-box .in-box,.cz,.input-box{
         float: left;
       }
       .form-auto{
@@ -424,51 +350,3 @@ export default {
         .playBtn i{
           color: #fff;
         }
-  body{
-	overflow-x: hidden;
-  }
-	audio{
-        opacity: 0;
-        display: none;
-      }
-    #msglog, #messageInput {
-      border: 1px solid #ccc;
-      width: 500px;
-      height: 350px;
-      overflow-y: auto;
-      font-size: 14px;
-    }
-    #messageInput {
-      height: 80px;
-    }
-    .message {
-      line-height: 22px;
-    }
-    .message .user {
-      padding-right: 5px;
-      padding-left: 5px;
-      color: brown;
-    }
-    .sysMsg {
-      color: #c1bfbf;
-      padding-right: 5px;
-      padding-left: 5px;
-      font-size: 12px;
-    }
-    #users {
-      width: 100%;
-      padding: 0 5px 5px;
-    }
-    .swiper-wrapper img{
-	width:100%;
-	}
-	.swiper-container {
-	width: 100%;
-	}
-	.swiper-slide {
-	width: 100%;
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	}
-</style>
