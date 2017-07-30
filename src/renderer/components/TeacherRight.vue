@@ -27,14 +27,13 @@
 					<button type="submit" class="teacher-text-submit" >发送</button>
 				</div>
 			</form>
-			{{ isQNUploading }}
-			{{ err }}
+			正在上传? {{ isQNUploading }}
 		</div>
 	</div>
 </template>
 
 <script>
-require('../audioRecorder/WebAudioRecorder.js')
+require('../../../static/audioRecorder/WebAudioRecorder.js')
 const WebAudioRecorder = window.WebAudioRecorder
 const {desktopCapturer} = require('electron')
 
@@ -46,8 +45,7 @@ export default {
 			isRecording: false,
 			isQNUploading: false,
 			isSaving: false,
-			userMsg: '',
-			err: 'test'
+			userMsg: ''
 		}
 	},
 	created: function () {
@@ -65,6 +63,9 @@ export default {
 						this.recorder.onComplete = (recorder, blob) => {
 							console.log('录音成功: ', blob)
 							this.qiniuUpload(blob)
+						}
+						this.recorder.onError = (recorder, msg) => {
+							console.log(msg)
 						}
 					}, function (err) {
 						console.log(err)

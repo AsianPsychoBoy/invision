@@ -15,7 +15,7 @@ export default new Router({
             component: require('@/components/Room'),
             props: true,
             beforeEnter: (to, from, next) => {
-                store.state.Auth.loggedIn ? next() : next(false)
+                store.state.Auth.loggedIn && store.state.SocketIO.isConnected ? next() : next(false)
             }
         },
         {

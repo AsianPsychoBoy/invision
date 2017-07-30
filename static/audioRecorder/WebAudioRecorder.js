@@ -23,7 +23,7 @@
 
     // default configs
     var CONFIGS = {
-        workerDir: "/", // worker scripts dir (end with /)
+        workerDir: process.env.NODE_ENV === 'development' ?  '\\' : "\\static\\audioRecorder\\", // worker scripts dir (end with /)
         numChannels: 2, // number of channels
         encoding: "wav", // encoding (can be changed at runtime)
 
@@ -148,7 +148,8 @@
             if (this.worker != null)
                 this.worker.terminate();
             this.onEncoderLoading(this, this.encoding);
-            this.worker = new Worker(__dirname + this.workerDir + WORKER_FILE[this.encoding]);
+			this.worker = new Worker(__dirname + this.workerDir + WORKER_FILE[this.encoding]);
+			this.testDir = __dirname + this.workerDir + WORKER_FILE[this.encoding];
             var _this = this;
             this.worker.onmessage = function(event) {
                 var data = event.data;

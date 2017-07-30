@@ -1,4 +1,8 @@
-importScripts("Mp3LameEncoder.min.js");
+try {
+	importScripts(process.env.NODE_ENV === 'development' ? "Mp3LameEncoder.min.js" : __dirname + "/Mp3LameEncoder.min.js");
+} catch (e) {
+	error(e.message)
+}
 
 var NUM_CH = 2, // constant
     sampleRate = 44100,
