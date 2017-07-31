@@ -36,7 +36,7 @@ export default {
 	methods: {
 		login: function () {
 			console.log('submitted', this.username, this.password, this.roomId)
-			this.$http.post('https://www.iissr.com/serivceLogin', {
+			this.$http.post('http://www.inv839661.com/serivceLogin', {
 				roomId: this.roomId,
 				user: this.username,
 				password: this.password

@@ -76,10 +76,10 @@ export default {
 			this.window.reload()
 		},
 		logout () {
-			this.$store.commit('Auth/LOG_OUT')
-			this.$socket.disconnect()
-			this.$router.push('/login')
-			this.$socket.connect('http://123.206.124.171')
+			// this.$store.commit('Auth/LOG_OUT')
+			// this.$socket.disconnect()
+			// this.$router.push('/login')
+			// this.$socket.connect('http://123.206.124.171')
 			this.reloadWin()
 		}
 	}

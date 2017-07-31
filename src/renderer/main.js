@@ -10,7 +10,7 @@ import store from './store'
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 Vue.config.productionTip = false
-export const SocketInstance = SocketIO('http://123.206.124.171')
+export const SocketInstance = SocketIO('http://www.inv839661.com')
 Vue.use(VueSocketIO, SocketInstance, store)
 
 /* eslint-disable no-new */

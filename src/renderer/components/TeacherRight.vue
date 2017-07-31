@@ -88,7 +88,7 @@ export default {
 			try {
 				this.isQNUploading = true
 
-				let tokenRes = await this.$http.get('https://iissr.com/token')
+				let tokenRes = await this.$http.get('http://www.inv839661.com/token')
 
 				console.log('七牛token值获取成功', tokenRes)
 				let formData = new FormData()
@@ -138,7 +138,7 @@ export default {
 			})
 
 			this.isSaving = true
-			this.$http.post('https://iissr.com/ppt-upload/' + this.$store.state.Auth.roomId, formData)
+			this.$http.post('http://www.inv839661.com/ppt-upload/' + this.$store.state.Auth.roomId, formData)
 				.then(res => {
 					this.isSaving = false
 					console.log(res)
