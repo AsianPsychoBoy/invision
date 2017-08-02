@@ -50,7 +50,7 @@ export default {
 		let window = BrowserWindow.getFocusedWindow()
 		return {
 			window: window,
-			isMax: window.isMaximized()
+			isMax: window ? window.isMaximized() : false
 		}
 	},
 	computed: {
